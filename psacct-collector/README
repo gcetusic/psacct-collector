@@ -1,0 +1,14 @@
+You were expecting documentation. HAH! Just kidding, documentation pending.
+Here are some details about the project while you wait.
+
+Author: Goran Cetusic
+Email: goran.cetusic@gmail.com, cetko@kset.org, goran.cetusic@cern.ch
+Description: This project has been developed as a 2011 summer project for CERN Openlab to replace the old accounting scripts developed for the CERN grid.
+The code is a rewrite of the Open Science Grid Gratia project, the psacct probe part written in Python to be exact.
+Although a lot of effort has been put in the rewrite, a good amount of the original code is still included. Thank you, OSG Gratia team!
+License: GPL (Free as in free speech, not free beer.)
+Organization: CERN
+	Section: IT-PES-PS
+	Project: Openlab Summer 2011 - Review process accounting
+	Supervisor: Ricardo Salgueiro Domingues da Silva
+	

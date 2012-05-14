@@ -1,0 +1,5 @@
+[gratia]
+name=Gratia RPMs
+baseurl=http://gratia.fnal.gov/Files/probe/RPMS/
+enabled=0
+gpgcheck=0

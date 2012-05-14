@@ -1,0 +1,71 @@
+<ProbeConfiguration 
+
+    Title1="Collector Information"
+
+    CollectorHost="lxfsrd0714.cern.ch"
+    CollectorPort="80"
+    SSLHost="gratia-osg-itb.opensciencegrid.org:443" 
+    SSLRegistrationHost="gratia-osg-itb.opensciencegrid.org:80"
+
+    CollectorService="sysacct"
+    CollectorUsername=""
+    CollectorPassword="" 
+    SSLCollectorService="cern"
+
+    Title2="Probe information and functional configuration"
+
+    ProbeName="Generic"
+    SiteName="Generic Site"
+    Grid="CERN"
+    GridDescription="CERN Grid"
+    SuppressUnknownVORecords="0"
+    SuppressNoDNRecords="0"
+    SuppressGridLocalRecords="0"
+    EnableProbe="0"
+
+    Title3="Tuning parameter"
+
+    BundleSize="100"
+       Comments28="Number of records to be sent per envelope. Consider setting higher (up to 200)."
+	    MaxPendingFiles="100000"
+    MaxStagedArchives="400"
+       Comments30="The maximum of backload files is MaxPendingFiles * MaxStagedArchives per probe"
+    UseSyslog="0"
+    ConnectionTimeout="900"
+       Comments31="Number of second GratiaCore will wait before timing out an attempt to connect or post to the Collector"
+
+    LogLevel="2"
+       Comments32="Controls debug messages printed to log file."
+    DebugLevel="0" 
+       Comments33="Controls debug messages printed to screen."
+    LogRotate="31"
+    DataFileExpiration="31"
+       Comments34="The number of days quarantined and unusable data files are kept"
+    QuarantineSize="200"
+       Comments35="The maximum size in Mb allowed to be kept in each quarantined directory"
+    GratiaExtension="gratia.json"
+
+    Title4="Authentication Configuration"
+
+    UseSSL="0" 
+    CertificateFile="/etc/grid-security/hostcert.pem"
+    KeyFile="/etc/grid-security/hostkey.pem"
+    UseGratiaCertificates="0"
+       Comments40="If no directory is specified the gratia certificate file will be created in 'WorkingFolder'/certs."
+    GratiaCertificateFile="gratia.probecert.pem"
+    GratiaKeyFile="gratia.probekey.pem"
+    
+    Title5="File and directory location"
+
+    VDTSetupFile="MAGIC_VDT_LOCATION/setup.sh"
+    UserVOMapFile="MAGIC_VDT_LOCATION/monitoring/grid3-user-vo-map.txt"
+    CertInfoLogPattern="MAGIC_VDT_LOCATION/var/log/accounting/blahp.log-*"
+        Comments51="Location and wildcard pattern of log files that contains certificate information about the jobs in the format followed by the 'blah demons'."
+
+    PSACCTBackupFileRepository="/var/psacct-collector/backup/"
+    PSACCTFileRepository="/var/psacct-collector/files/"
+    DataFolder="/var/psacct-collector/data/"
+    WorkingFolder="/tmp/"
+    LogFolder="/var/log/psacct-collector/"
+
+/>

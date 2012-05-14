@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# psacct	Script to start Gratia's handling of kernel process accounting
+#
+# Author:       Mike A. Harris <mharris@redhat.com>, tweaked by Philippe Canal
+#
+# chkconfig: 35 45 45
+# description:  Starts and stops process accounting for Gratia's purpose
+
+# Source function library.
+. /etc/init.d/functions
+
+# The location of the accounting file
+# This is not the default location to avoid race condition with logrotate
+eval `grep PSACCTFileRepository "/etc/psacct-collector/collector.conf"`
+mkdir -p ${PSACCTFileRepository}
+ACCTFILE=${PSACCTFileRepository}/pacct
+
+start() {
+	[ ! -r $ACCTFILE ] && touch $ACCTFILE && chmod 600 $ACCTFILE
+	action $"Starting process accounting: " /sbin/accton $ACCTFILE
+	touch /var/lock/subsys/gratia-psacct
+}
+
+stop() {
+	action $"Shutting down process accounting: " /sbin/accton
+	rm -f /var/lock/subsys/gratia-psacct
+}
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	if [ -e /var/lock/subsys/gratia-psacct ]; then
+		echo $"Gratia process accounting is enabled."
+	else
+		echo $"Gratia process accounting is disabled."
+	fi
+	;;
+  restart|reload)
+	stop
+	start
+	;;
+  *)
+	# do not advertise unreasonable commands that there is no reason
+	# to use with this device
+	echo $"Usage: $0 {start|stop|status|restart|reload}"
+	exit 1
+esac
+
+exit 0
+

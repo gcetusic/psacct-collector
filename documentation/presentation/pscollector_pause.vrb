@@ -1,0 +1,40 @@
+\frametitle {Indexing}
+\begin{itemize}
+\item The first time a view is executed CouchDB indexes results in a B-tree
+\begin{itemize}
+\item It can take a long time for the first call to return results
+\item Subsequent calls are much faster because a B-tree exists
+\end{itemize}
+\item Our views are going to be rarely executed
+\begin{itemize}
+\item We can update our B-tree periodically (warm up the views)
+\end{itemize}
+\end{itemize}
+{ \tiny
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}[language=Python, escapechar=!]]
+class ViewUpdater(object):
+!!    # The smallest amount of changed documents before the views are updated
+    MIN_NUM_OF_CHANGED_DOCS = 50
+
+    # Set the minimum pause between calls to the database
+    PAUSE = 5 # seconds
+
+    # URL to the DB on the CouchDB server
+    URL = "http://localhost:5984"
+
+!!    # One entry for each design document
+    # in each database
+    VIEWS = {
+        'sysacct_records': {
+            'commands': [
+                'exectimes',
+                # ...
+            ]
+        }
+    }
+\end{lstlisting}
+\end{tabular}
+\end{center}
+}

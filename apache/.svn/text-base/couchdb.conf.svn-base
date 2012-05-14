@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+   ServerAdmin gcetusic@gmail.com
+   DocumentRoot "/opt/websites/web/www/dummy"
+   ServerName couchdb.localhost
+   AllowEncodedSlashes On
+   ProxyRequests Off
+   KeepAlive Off
+   <Proxy *>
+      Order deny,allow
+      Allow from all
+   </Proxy>
+   <Location />
+      #SSLRequireSSL
+      AuthType Kerberos
+      AuthName "CERN Login"
+      KrbMethodNegotiate On
+      KrbMethodK5Passwd On
+      KrbAuthRealms CERN.CH
+      Krb5KeyTab /etc/krb5.keytab
+      KrbVerifyKDC Off
+      KrbServiceName host/lxfsrd0714.cern.ch@CERN.CH
+      require valid-user
+   </Location>
+   ProxyPass / http://localhost:5984/ retry=0 nocanon
+   ProxyPassReverse / http://localhost:5984/
+   RequestHeader unset Authorization
+
+   ErrorLog "logs/couchdb.localhost-error_log"
+   CustomLog "logs/couchdb.localhost-access_log" common
+</VirtualHost>
+

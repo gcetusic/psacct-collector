@@ -4,6 +4,7 @@
 
 import getopt,sys
 import GratiaCore
+import pdb
 
 class UsageError(Exception):
     def __init__(self, msg):

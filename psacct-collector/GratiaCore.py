@@ -6,6 +6,7 @@ Gratia Core Probe Library
 """
 
 import os
+import pdb
 import signal
 import errno
 import sys
